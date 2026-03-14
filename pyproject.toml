@@ -6,8 +6,10 @@ readme = "README.md"
 authors = [
     { name = "Tyler Riccio", email = "tylerriccio8@gmail.com" }
 ]
-requires-python = ">=3.14"
-dependencies = []
+requires-python = ">=3.11"
+dependencies = [
+    "vaderSentiment",
+]
 
 [project.scripts]
 ff-vibes = "ff_vibes:main"
@@ -15,3 +17,10 @@ ff-vibes = "ff_vibes:main"
 [build-system]
 requires = ["uv_build>=0.10.10,<0.11.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyrefly>=0.56.0",
+    "ruff>=0.15.6",
+    "pytest",
+]
