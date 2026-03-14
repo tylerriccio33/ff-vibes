@@ -1,7 +1,6 @@
 """Shared test fixtures."""
 
 import csv
-import json
 from pathlib import Path
 
 import pytest
@@ -35,16 +34,3 @@ def sample_csv(tmp_path: Path) -> Path:
         writer.writerow({"id": "1", "text": "Great trade!"})
         writer.writerow({"id": "2", "text": "Awful decision."})
     return csv_file
-
-
-@pytest.fixture
-def sample_json(tmp_path: Path) -> Path:
-    """Create a sample JSON file with comments."""
-    json_file = tmp_path / "sample.json"
-    data = [
-        {"id": "1", "text": "Amazing play!"},
-        {"id": "2", "text": "Disappointing performance."},
-    ]
-    with open(json_file, "w", encoding="utf-8") as f:
-        json.dump(data, f)
-    return json_file
