@@ -4,6 +4,7 @@ import csv
 from pathlib import Path
 
 from ff_vibes.scorer import score_text
+from ff_vibes.players import extract_players
 
 
 def run(input_path: Path, text_column: str, output_path: Path) -> None:
@@ -62,7 +63,7 @@ def _ingest(input_path: Path, text_column: str) -> list[dict]:
 def _stage(rows: list[dict], text_column: str) -> None:
     """Staging phase: Apply sentiment scoring to each row.
 
-    Modifies rows in-place, adding sentiment_score and sentiment_label columns.
+    Modifies rows in-place, adding sentiment_score, sentiment_label, and players columns.
 
     Args:
         rows: List of row dictionaries to score.
@@ -73,6 +74,8 @@ def _stage(rows: list[dict], text_column: str) -> None:
         score, label = score_text(text)
         row["sentiment_score"] = score
         row["sentiment_label"] = label
+        player_list = extract_players(text)
+        row["players"] = ",".join(player_list)
 
 
 def _consume(rows: list[dict], output_path: Path) -> None:
@@ -87,6 +90,8 @@ def _consume(rows: list[dict], output_path: Path) -> None:
         fieldnames.append("sentiment_score")
     if "sentiment_label" not in fieldnames:
         fieldnames.append("sentiment_label")
+    if "players" not in fieldnames:
+        fieldnames.append("players")
 
     with open(output_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

@@ -1,9 +1,11 @@
 """Shared test fixtures."""
 
 import csv
+from collections.abc import Generator
 from pathlib import Path
 
 import pytest
+from flask.testing import FlaskClient
 
 
 @pytest.fixture
@@ -34,3 +36,13 @@ def sample_csv(tmp_path: Path) -> Path:
         writer.writerow({"id": "1", "text": "Great trade!"})
         writer.writerow({"id": "2", "text": "Awful decision."})
     return csv_file
+
+
+@pytest.fixture
+def flask_client() -> Generator[FlaskClient, None, None]:
+    """Flask test client."""
+    from ff_vibes.app import app
+
+    app.config["TESTING"] = True
+    with app.test_client() as client:
+        yield client

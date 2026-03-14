@@ -8,3 +8,6 @@ test: ## Run tests
 
 score: ## Run sentiment scoring on sample data
 	@uv run ff-vibes --input data/raw.csv --text-column text --output out.csv
+
+serve: ## Run Flask dev server
+	@uv run flask --app ff_vibes.app run
