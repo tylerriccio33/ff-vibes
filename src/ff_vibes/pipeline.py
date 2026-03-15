@@ -3,17 +3,17 @@
 import csv
 from pathlib import Path
 
-from ff_vibes.scorer import score_text
+from ff_vibes.scorer import score_player_sentences
 from ff_vibes.players import extract_players
 
 
 def run(input_path: Path, text_column: str, output_path: Path) -> None:
-    """Score sentiment for text in a CSV file.
+    """Score per-player sentiment for text in a CSV file.
 
     Phases:
     1. Ingestion: Read and validate input CSV
-    2. Staging: Apply sentiment scoring to each row
-    3. Consumption: Write enriched output CSV
+    2. Staging: Extract players and score sentences mentioning each player
+    3. Consumption: Write one row per (comment, player) pair
 
     Args:
         input_path: Path to input CSV file.
@@ -27,8 +27,8 @@ def run(input_path: Path, text_column: str, output_path: Path) -> None:
     output_path = Path(output_path)
 
     rows = _ingest(input_path, text_column)
-    _stage(rows, text_column)
-    _consume(rows, output_path)
+    scored = _stage(rows, text_column)
+    _consume(scored, output_path)
 
 
 def _ingest(input_path: Path, text_column: str) -> list[dict]:
@@ -60,22 +60,27 @@ def _ingest(input_path: Path, text_column: str) -> list[dict]:
     return rows
 
 
-def _stage(rows: list[dict], text_column: str) -> None:
-    """Staging phase: Apply sentiment scoring to each row.
+def _stage(rows: list[dict], text_column: str) -> list[dict]:
+    """Staging phase: Explode each row into one row per mentioned player.
 
-    Modifies rows in-place, adding sentiment_score, sentiment_label, and players columns.
+    For each player found, scores only the sentences mentioning that player.
+    Rows with no player mentions are dropped.
 
     Args:
-        rows: List of row dictionaries to score.
+        rows: List of row dictionaries to process.
         text_column: Name of the column containing text to score.
+
+    Returns:
+        List of scored row dicts, one per (comment, player) pair.
     """
+    scored = []
     for row in rows:
         text = row[text_column]
-        score, label = score_text(text)
-        row["sentiment_score"] = score
-        row["sentiment_label"] = label
-        player_list = extract_players(text)
-        row["players"] = ",".join(player_list)
+        players = extract_players(text)
+        for player in players:
+            score, label = score_player_sentences(text, player)
+            scored.append({**row, "player": player, "sentiment_score": score, "sentiment_label": label})
+    return scored
 
 
 def _consume(rows: list[dict], output_path: Path) -> None:
@@ -86,12 +91,6 @@ def _consume(rows: list[dict], output_path: Path) -> None:
         output_path: Path to write output CSV file.
     """
     fieldnames = list(rows[0].keys()) if rows else []
-    if "sentiment_score" not in fieldnames:
-        fieldnames.append("sentiment_score")
-    if "sentiment_label" not in fieldnames:
-        fieldnames.append("sentiment_label")
-    if "players" not in fieldnames:
-        fieldnames.append("players")
 
     with open(output_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

@@ -21,14 +21,17 @@ def test_csv_roundtrip(sample_csv: Path, tmp_path: Path) -> None:
         rows = list(reader)
 
     assert len(rows) == 2
+    assert "player" in rows[0]
     assert "sentiment_score" in rows[0]
     assert "sentiment_label" in rows[0]
 
-    # First row should be positive
+    # Patrick Mahomes row should be positive
+    assert rows[0]["player"] == "Patrick Mahomes"
     assert rows[0]["sentiment_label"] == "positive"
     assert float(rows[0]["sentiment_score"]) > 0.05
 
-    # Second row should be negative
+    # Josh Allen row should be negative
+    assert rows[1]["player"] == "Josh Allen"
     assert rows[1]["sentiment_label"] == "negative"
     assert float(rows[1]["sentiment_score"]) < -0.05
 

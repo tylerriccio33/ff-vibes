@@ -33,8 +33,8 @@ def sample_csv(tmp_path: Path) -> Path:
     with open(csv_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["id", "text"])
         writer.writeheader()
-        writer.writerow({"id": "1", "text": "Great trade!"})
-        writer.writerow({"id": "2", "text": "Awful decision."})
+        writer.writerow({"id": "1", "text": "Patrick Mahomes is amazing and fantastic this season!"})
+        writer.writerow({"id": "2", "text": "Josh Allen has been terrible lately."})
     return csv_file
 
 

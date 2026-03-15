@@ -1,3 +1,6 @@
+setup-models: ## Download spaCy model
+	@uv pip install en-core-web-sm --find-links https://github.com/explosion/spacy-models/releases/tag/en_core_web_sm-3.8.0
+
 players: ## Load NFL player names into data/players.csv
 	@uv run python scripts/load_players.py
 
