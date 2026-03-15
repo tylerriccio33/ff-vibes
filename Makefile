@@ -1,3 +1,6 @@
+players: ## Load NFL player names into data/players.csv
+	@uv run python scripts/load_players.py
+
 lint: ## Run type checker and linter
 	@uv run ruff format
 	@uv run ruff check

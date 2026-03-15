@@ -1,11 +1,11 @@
 id,text,sentiment_score,sentiment_label,players
-1,NFL Free Agency is one of my favorite times of year for content. Finding out where players land and then analyzing the Fantasy Football implications to follow is a process I have fully embraced as a content creator for years.,0.743,positive,"Free Agency,Finding,Fantasy Football"
-2,"With the NFL offseason also comes shifts in Dynasty Fantasy Football values, and it is important to understand those changes. Today, we look at the ""losers"" of NFL free agency.",0.5267,positive,"With,Dynasty Fantasy Football,Today"
-3,"The Vikings signed Kyler Murray to a one-year, $1.3 million contract. This is not a quarterback competition; this was a statement by Minnesota.",0.0,neutral,"The Vikings,Kyler Murray,Minnesota"
-4,"Michael Penix Jr. was selected in the first round of the 2024 NFL Draft. Penix has not displayed passing competence since entering the league, and I regard Tua as the much better talent.",0.6908,positive,"Michael Penix Jr,Draft,Penix,Tua"
-5,"Trey Benson rushed for 291 yards in 2024, 160 yards in 2025. Many Dynasty managers have been waiting patiently for Benson to take over the backfield, but this looks far from reality now.",0.0,neutral,"Trey Benson,Many Dynasty,Benson"
-6,Get ready for the inevitable roller coaster ride - we'll start with Hasson Reddick's trade demand and JD's stomping of a response.,0.25,positive,"Get,Hasson Reddick"
-7,Never a dull moment with this franchise!,0.3716,positive,Never
-8,The Jets traded for him knowing full well that he wanted a new contract. Why tf did they trade for him in the first place?,0.2732,positive,The Jets
-9,"He wasn't willing to play under his existing contract in Philly, and dug his heels in for a big contract there until they traded him, why would he suddenly say sure Jets, I'll play under the current contract. No way.",0.119,positive,"He,Philly,Jets"
-10,If we're being honest....I don't think the Jets had any intention of giving him a long term deal. They're just as much to blame for this situation as he is.,0.0,neutral,"If,Jets,They"
+1,NFL Free Agency is one of my favorite times of year for content. Finding out where players land and then analyzing the Fantasy Football implications to follow is a process I have fully embraced as a content creator for years.,0.743,positive,
+2,"With the NFL offseason also comes shifts in Dynasty Fantasy Football values, and it is important to understand those changes. Today, we look at the ""losers"" of NFL free agency.",0.5267,positive,
+3,"The Vikings signed Kyler Murray to a one-year, $1.3 million contract. This is not a quarterback competition; this was a statement by Minnesota.",0.0,neutral,Kyler Murray
+4,"Michael Penix Jr. was selected in the first round of the 2024 NFL Draft. Penix has not displayed passing competence since entering the league, and I regard Tua as the much better talent.",0.6908,positive,Michael Penix Jr.
+5,"Trey Benson rushed for 291 yards in 2024, 160 yards in 2025. Many Dynasty managers have been waiting patiently for Benson to take over the backfield, but this looks far from reality now.",0.0,neutral,Trey Benson
+6,Get ready for the inevitable roller coaster ride - we'll start with Hasson Reddick's trade demand and JD's stomping of a response.,0.25,positive,
+7,Never a dull moment with this franchise!,0.3716,positive,
+8,The Jets traded for him knowing full well that he wanted a new contract. Why tf did they trade for him in the first place?,0.2732,positive,
+9,"He wasn't willing to play under his existing contract in Philly, and dug his heels in for a big contract there until they traded him, why would he suddenly say sure Jets, I'll play under the current contract. No way.",0.119,positive,
+10,If we're being honest....I don't think the Jets had any intention of giving him a long term deal. They're just as much to blame for this situation as he is.,0.0,neutral,
