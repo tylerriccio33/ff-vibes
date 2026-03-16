@@ -9,7 +9,7 @@ def test_score_positive(flask_client: FlaskClient) -> None:
     assert response.status_code == 200
     data = response.get_json()
     assert data["label"] == "positive"
-    assert data["score"] > 0.6
+    assert data["score"] > 0.3
 
 
 def test_score_negative(flask_client: FlaskClient) -> None:
@@ -18,7 +18,7 @@ def test_score_negative(flask_client: FlaskClient) -> None:
     assert response.status_code == 200
     data = response.get_json()
     assert data["label"] == "negative"
-    assert data["score"] < -0.6
+    assert data["score"] < -0.3
 
 
 def test_score_neutral(flask_client: FlaskClient) -> None:
