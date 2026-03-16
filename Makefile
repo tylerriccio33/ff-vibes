@@ -12,6 +12,9 @@ lint: ## Run type checker and linter
 test: ## Run tests
 	@uv run pytest
 
+install-hooks: ## Install pre-commit hooks
+	@uv run pre-commit install
+
 score: ## Run sentiment scoring on sample data
 	@uv run ff-vibes --input data/raw.csv --text-column text --output out.csv
 
