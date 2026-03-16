@@ -28,12 +28,12 @@ def test_csv_roundtrip(sample_csv: Path, tmp_path: Path) -> None:
     # Patrick Mahomes row should be positive
     assert rows[0]["player"] == "Patrick Mahomes"
     assert rows[0]["sentiment_label"] == "positive"
-    assert float(rows[0]["sentiment_score"]) > 0.05
+    assert float(rows[0]["sentiment_score"]) > 0.6
 
     # Josh Allen row should be negative
     assert rows[1]["player"] == "Josh Allen"
     assert rows[1]["sentiment_label"] == "negative"
-    assert float(rows[1]["sentiment_score"]) < -0.05
+    assert float(rows[1]["sentiment_score"]) < -0.6
 
 
 def test_missing_column(tmp_path: Path) -> None:

@@ -79,7 +79,14 @@ def _stage(rows: list[dict], text_column: str) -> list[dict]:
         players = extract_players(text)
         for player in players:
             score, label = score_player_sentences(text, player)
-            scored.append({**row, "player": player, "sentiment_score": score, "sentiment_label": label})
+            scored.append(
+                {
+                    **row,
+                    "player": player,
+                    "sentiment_score": score,
+                    "sentiment_label": label,
+                }
+            )
     return scored
 
 

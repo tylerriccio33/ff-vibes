@@ -39,8 +39,8 @@ def get_players():
 
     player_stats = {}
     for row in rows:
-        players_str = row.get("players", "")
-        if not players_str:
+        player = row.get("player", "").strip()
+        if not player:
             continue
         score_str = row.get("sentiment_score", "0")
         try:
@@ -48,13 +48,10 @@ def get_players():
         except (ValueError, TypeError):
             score = 0.0
 
-        for player in players_str.split(","):
-            player = player.strip()
-            if player:
-                if player not in player_stats:
-                    player_stats[player] = {"scores": [], "count": 0}
-                player_stats[player]["scores"].append(score)
-                player_stats[player]["count"] += 1
+        if player not in player_stats:
+            player_stats[player] = {"scores": [], "count": 0}
+        player_stats[player]["scores"].append(score)
+        player_stats[player]["count"] += 1
 
     result = [
         {
@@ -76,11 +73,7 @@ def get_player_comments(name: str):
     rows = _read_csv("out.csv")
     result = []
     for row in rows:
-        players_str = row.get("players", "")
-        if not players_str:
-            continue
-        players = [p.strip() for p in players_str.split(",")]
-        if name in players:
+        if row.get("player", "").strip() == name:
             result.append(
                 {
                     "text": row.get("text", ""),

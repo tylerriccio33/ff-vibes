@@ -23,7 +23,7 @@ def negative_text() -> str:
 @pytest.fixture
 def neutral_text() -> str:
     """Sample neutral text."""
-    return "The player was drafted in the third round."
+    return "it could go either way"
 
 
 @pytest.fixture
@@ -33,7 +33,9 @@ def sample_csv(tmp_path: Path) -> Path:
     with open(csv_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["id", "text"])
         writer.writeheader()
-        writer.writerow({"id": "1", "text": "Patrick Mahomes is amazing and fantastic this season!"})
+        writer.writerow(
+            {"id": "1", "text": "Patrick Mahomes is amazing and fantastic this season!"}
+        )
         writer.writerow({"id": "2", "text": "Josh Allen has been terrible lately."})
     return csv_file
 
